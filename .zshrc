@@ -137,6 +137,15 @@ mkcd() { mkdir -p "$1" && cd "$1"; }
 winutil() {
   powershell.exe -Command "Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command \"irm https://christitus.com/win | iex\"'"
 }
+mvp()
+{
+    dir="$2" # Include a / at the end to indicate directory (not filename)
+    tmp="$2"; tmp="${tmp: -1}"
+    [ "$tmp" != "/" ] && dir="$(dirname "$2")"
+    [ -a "$dir" ] ||
+    mkdir -p "$dir" &&
+    mv "$@"
+}
 
 # ff
 
