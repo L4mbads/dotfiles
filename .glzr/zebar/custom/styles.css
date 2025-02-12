@@ -4,14 +4,33 @@
  */
 @import 'https://www.nerdfonts.com/assets/css/webfont.css';
 
+:root {
+  --red: rgb(243, 139, 168);
+  --yellow: rgb(249, 226, 176);
+  --green: rgb(166, 227, 161);
+  --blue: rgb(137, 180, 250);
+  --teal: rgb(148, 226, 213);
+  --pink: rgb(245, 194, 231);
+  --white: rgb(205, 214, 244);
+  --black: rgb(17, 17, 27);
+  --gray: rgb(30, 30, 46);
+  --light-gray: rgb(108, 112, 134);
+
+  --border-radius: 8px;
+}
+
+.nf {
+  color: var(--white);
+}
+
 i {
   /* color: rgb(115 130 175 / 95%); */
-  color: rgb(255 255 255 / 90%);
+  color: var(--white);
   margin-right: 7px;
 }
 
 body {
-  color: rgb(255 255 255 / 90%);
+  color: var(--white);
   font-family: Inter;
   font-size: 12px;
   overflow: hidden;
@@ -47,11 +66,15 @@ body,
 
 .center {
   /* background-color: rgba(40, 40, 41, 0.95); */
-  background-color: rgba(30, 30, 46, 0.95);
-  border-radius: 12px;
+  background-color: var(--gray);
+  border-radius: var(--border-radius);
   border: none;
-  padding: 8px 36px;
+  /* outline: solid 2px var(--red);
+  outline-offset: -5px; */
+  padding: 8px 12px;
   justify-self: center;
+  width: 50%;
+
   /* font-size: 16px; */
 }
 
@@ -60,38 +83,67 @@ body,
   justify-self: end;
 }
 
-.logo,
 .binding-mode,
 .tiling-direction,
 .network,
 .memory,
 .cpu,
-.media,
 .battery {
+  background-color: var(--gray);
   margin-left: 10px;
-  background-color: rgba(30, 30, 46, 0.95);
-  border-radius: 12px;
-  border: none;
+  color: var(--white);
+  border-radius: var(--border-radius);
+  padding: 8px 12px;
+  font-weight: 400;
+}
+
+.logo {
+  background-color: var(--gray);
+  margin-right: 10px;
+  /* color: var(--white); */
+  border-radius: var(--border-radius);
   padding: 8px 14px;
+  font-weight: bold;
+}
+
+.network {
+  color: var(--pink);
+}
+
+.memory {
+  color: var(--green);
+}
+
+.cpu {
+  color: var(--teal);
 }
 
 .media {
+  width: 100%;
   display: flex;
   align-items: center;
 }
 
+.media-scroller {
+  margin: 0px;
+}
+
 .media-title {
-  /* margin: 10px; */
-  font-family: ui-monospace, monospace;
+  flex-grow: 4;
+  margin: 0px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: bold;
 }
 
 .media-button {
   background: rgb(255 255 255 / 0%);
   margin-left: 4px;
-  padding: 0px 4px;
+  padding: 0px 2px;
   color: rgb(255 255 255 / 90%);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   &:hover {
     background: rgb(75 115 255 / 50%);
@@ -101,30 +153,37 @@ body,
 .workspaces {
   display: flex;
   align-items: center;
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--gray);
 }
 
 .workspace {
-  background: rgba(30, 30, 46, 0.3);
-  margin-right: 4px;
-  padding: 8px 12px;
-  color: rgb(255 255 255 / 90%);
+  background: rgb(108 112 134 / 15%);
+  color: var(--white);
+  /* background: rgba(30, 30, 46, 0.3);
+  color: rgb(255 255 255 / 90%); */
+  margin-inline: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 4px 8px;
   border: none;
-  border-radius: 12px;
+  border-radius: calc(var(--border-radius) - 4px);
   cursor: pointer;
   &.displayed {
-    background: rgb(30 30 46 / 10%);
+    background: rgb(255 112 134 / 15%);
   }
   &.focused,
   &:hover {
-    font-weight: 400;
-    background: rgb(69 71 90 / 50%);
+    font-weight: bold;
+    background: var(--light-gray);
   }
 }
 
 .binding-mode,
 .tiling-direction {
-  background: rgb(255 255 255 / 15%);
-  color: rgb(255 255 255 / 90%);
+  background: rgb(108 112 134 / 15%);
+  color: rgb(108 112 134 / 90%);
   border-radius: 8px;
   line-height: 1;
   padding: 4px 8px;
@@ -137,12 +196,11 @@ body,
 }
 
 .cpu .high-usage {
-  color: #f38ba8;
+  color: var(--red);
 }
 
 .battery {
   position: relative;
-  color: #cdd6f4;
   /* color: #313244; */
 }
 

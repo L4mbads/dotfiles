@@ -9,7 +9,6 @@
 
     <!-- Custom styles. -->
     <link rel="stylesheet" type="text/css" href="./styles.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- Add empty favicon to suppress not found errors. -->
     <link rel="icon" href="data:;" />
@@ -56,6 +55,12 @@
 
         const ScrollingText = ({ text, interval = 200, length = 16 }) => {
 
+          if (text.length < length) {
+            return <p className="media-title">{text}</p>;
+          }
+
+          text += " ";
+
           useEffect(() => {
             const timer = setInterval(() => {
               setIndex((prevIndex) => (prevIndex + 1) % text.length);
@@ -69,7 +74,7 @@
             return extendedText.slice(index, index + length);
           };
 
-          return <div>{getDisplayText()}</div>;
+          return <p className="media-title">{getDisplayText()}</p>;
         };
 
 
@@ -118,8 +123,8 @@
 
         function getPlayPauseIcon(mediaOutput) {
           if (mediaOutput.isPlaying)
-            return <i className="fa fa-pause"></i>;
-          return <i className="fa fa-play"></i>;
+            return <i className="nf nf-fa-pause"></i>;
+          return <i className="nf nf-fa-play"></i>;
         }
 
         // Get icon to show for current weather status.
@@ -155,6 +160,7 @@
         return (
           <div className="app">
             <div className="left">
+              <i className="logo nf nf-fa-windows"></i>
               {output.glazewm && (
                 <div className="workspaces">
                   {output.glazewm.currentWorkspaces.map(workspace => (
@@ -175,7 +181,51 @@
 
             </div>
 
-            <div className="center">{output.date?.formatted}</div>
+            {output.media?.currentSession && (
+              <div className="center">
+                <div className="media">
+                  <button
+                    className="media-button"
+                    key="tombol"
+                    onClick={() =>{
+                      output.media.togglePlayPause();}
+                    }
+                  >
+                  {(output.media.currentSession) && getPlayPauseIcon(output.media.currentSession)}
+                  </button>
+                  <button
+                    className="media-button"
+                    key="tombol"
+                    onClick={() =>{
+                      output.media.togglePlayPause();}
+                    }
+                  >
+                  {(output.media.currentSession) && getPlayPauseIcon(output.media.currentSession)}
+                  </button>
+                  {output.media.currentSession?.title && (
+                      <ScrollingText text={output.media.currentSession.title} className="media-scroller"/>
+                  )}
+                  <button
+                    className="media-button"
+                    key="tombol"
+                    onClick={() =>{
+                      output.media.togglePlayPause();}
+                    }
+                  >
+                  {(output.media.currentSession) && getPlayPauseIcon(output.media.currentSession)}
+                  </button>
+                  <button
+                    className="media-button"
+                    key="tombol"
+                    onClick={() =>{
+                      output.media.togglePlayPause();}
+                    }
+                  >
+                  {(output.media.currentSession) && getPlayPauseIcon(output.media.currentSession)}
+                  </button>
+                </div>
+              </div>
+            )}
 
             <div className="right">
               {output.glazewm && (
@@ -189,26 +239,6 @@
                     </button>
                   ))}
                 </>
-              )}
-              {output.media?.currentSession && (
-                <div className="media">
-                  <div className="media-title">
-                    {output.media.currentSession?.title && (
-                      <>
-                        <ScrollingText text={output.media.currentSession.title}/>
-                      </>
-                    )}
-                  </div>
-                  <button
-                    className="media-button text-center"
-                    key="tombol"
-                    onClick={() =>{
-                      output.media.togglePlayPause();}
-                    }
-                  >
-                  {(output.media.currentSession) && getPlayPauseIcon(output.media.currentSession)}
-                  </button>
-                </div>
               )}
               {output.network && (
                 <div className="network">

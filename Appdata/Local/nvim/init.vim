@@ -37,7 +37,7 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'xiyaowong/transparent.nvim'
 "Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
-colorscheme catppuccin-frappe
+colorscheme catppuccin-mocha
 "catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 

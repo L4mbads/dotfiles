@@ -133,6 +133,9 @@ window_rules:
     match:
       - window_process: { equals: "Code" }
       - window_process: { equals: "Vesktop" }
+  # - commands: ["set-transparency --opacity 1"]
+  #   match:
+  #     - window_process: { equals: "brave" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
