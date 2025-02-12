@@ -53,7 +53,7 @@
           providers.onOutput(() => setOutput(providers.outputMap));
         }, []);
 
-        const ScrollingText = ({ text, interval = 200, length = 16 }) => {
+        const ScrollingText = ({ text, interval = 200, length = 36 }) => {
 
           if (text.length < length) {
             return <p className="media-title">{text}</p>;
@@ -181,51 +181,39 @@
 
             </div>
 
-            {output.media?.currentSession && (
-              <div className="center">
+            <div className="center">
+              {output.media?.currentSession && (
                 <div className="media">
                   <button
                     className="media-button"
-                    key="tombol"
+                    key="media-button-previous"
+                    onClick={() =>{
+                      output.media.previous();}
+                    }
+                  >
+                    <i className="nf nf-fa-backward"></i>
+                  </button>
+                  <button
+                    className={`media-button-middle ${!output.media.currentSession.isPlaying && 'paused'}`}
+                    key="media-button-middle"
                     onClick={() =>{
                       output.media.togglePlayPause();}
                     }
                   >
-                  {(output.media.currentSession) && getPlayPauseIcon(output.media.currentSession)}
+                    <ScrollingText text={output.media.currentSession.title ?? ' '} className="media-scroller"/>
                   </button>
                   <button
                     className="media-button"
-                    key="tombol"
+                    key="media-button-next"
                     onClick={() =>{
-                      output.media.togglePlayPause();}
+                      output.media.next();}
                     }
                   >
-                  {(output.media.currentSession) && getPlayPauseIcon(output.media.currentSession)}
-                  </button>
-                  {output.media.currentSession?.title && (
-                      <ScrollingText text={output.media.currentSession.title} className="media-scroller"/>
-                  )}
-                  <button
-                    className="media-button"
-                    key="tombol"
-                    onClick={() =>{
-                      output.media.togglePlayPause();}
-                    }
-                  >
-                  {(output.media.currentSession) && getPlayPauseIcon(output.media.currentSession)}
-                  </button>
-                  <button
-                    className="media-button"
-                    key="tombol"
-                    onClick={() =>{
-                      output.media.togglePlayPause();}
-                    }
-                  >
-                  {(output.media.currentSession) && getPlayPauseIcon(output.media.currentSession)}
+                    <i className="nf nf-fa-forward"></i>
                   </button>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
 
             <div className="right">
               {output.glazewm && (
