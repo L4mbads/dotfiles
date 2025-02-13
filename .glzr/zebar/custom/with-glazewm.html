@@ -35,12 +35,9 @@
         network: { type: 'network' },
         glazewm: { type: 'glazewm' },
         cpu: { type: 'cpu' },
-        date: { type: 'date', formatting: 'EEE d MMM t' },
         battery: { type: 'battery' },
         memory: { type: 'memory' },
-        weather: { type: 'weather' },
         media: { type: 'media' },
-        host: { type: 'host' },
       });
 
       createRoot(document.getElementById('root')).render(<App />);
@@ -53,7 +50,7 @@
           providers.onOutput(() => setOutput(providers.outputMap));
         }, []);
 
-        const ScrollingText = ({ text, interval = 200, length = 36 }) => {
+        const ScrollingText = ({ text, interval = 200, length = 20 }) => {
 
           if (text.length < length) {
             return <p className="media-title">{text}</p>;
@@ -228,6 +225,14 @@
                       {bindingMode.displayName ?? bindingMode.name}
                     </button>
                   ))}
+                  <button
+                    className={`tiling-direction `}
+                    onClick={() =>
+                      output.glazewm.runCommand('toggle-tiling-direction')
+                    }
+                  >
+                  <i className={`nf ${output.glazewm.tilingDirection === 'horizontal' ? 'nf-md-swap_horizontal' : 'nf-md-swap_vertical'}`}></i>
+                  </button>
                 </>
               )}
               {output.network && (

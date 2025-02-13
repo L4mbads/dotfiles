@@ -1,7 +1,7 @@
 {
   "$schema": "https://github.com/glzr-io/zebar/raw/v2.4.0/resources/widget-schema.json",
   "htmlPath": "./with-glazewm.html",
-  "zOrder": "top_most",
+  "zOrder": "bottom_most",
   "shownInTaskbar": false,
   "focused": false,
   "resizable": false,
@@ -19,7 +19,7 @@
       "anchor": "top_left",
       "offsetX": "0px",
       "offsetY": "0px",
-      "width": "100%",
+      "width": "88%",
       "height": "45px",
       "monitorSelection": {
         "type": "all"
