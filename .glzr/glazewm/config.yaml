@@ -38,9 +38,9 @@ gaps:
 
   # Gap between windows and the screen edge.
   outer_gap:
-    top: "0px"
+    top: "4px"
     right: "10px"
-    bottom: "4px"
+    bottom: "10px"
     left: "10px"
 
 window_effects:
@@ -133,6 +133,7 @@ window_rules:
     match:
       - window_process: { equals: "Code" }
       - window_process: { equals: "Vesktop" }
+      - window_process: { equals: "Spotify" }
   # - commands: ["set-transparency --opacity 1"]
   #   match:
   #     - window_process: { equals: "brave" }
