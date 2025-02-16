@@ -1,52 +1,75 @@
 :hi Normal guibg=NONE ctermbg=NONE
 :hi EndOfBuffer guibg=NONE ctermbg=NONE
-":hi StatusLine guibg=NONE ctermbg=NONE
+:hi StatusLine guibg=NONE ctermbg=NONE
+
 set nocompatible            " disable compatibility to old-time vi
+
+syntax on                   " syntax highlighting
+syntax enable
+
+set number                  " add line numbers
+set relativenumber          " relative line numbers
+set ruler
+
+set noshowmode
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
 set showmatch               " show matching 
 set ignorecase              " case insensitive 
 set hlsearch                " highlight search 
 set incsearch               " incremental search
+
+set shiftwidth=4            " width for autoindents
 set tabstop=4               " number of columns occupied by a tab 
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
 set expandtab               " converts tabs to white space
-set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
-set number                  " add line numbers
-set relativenumber          " relative line numbers
 set wildmode=longest,list   " get bash-like tab completions
-" set cc=80                  " set an 80 column border for good coding style
-filetype plugin indent on   "allow auto-indenting depending on file type
-syntax on                   " syntax highlighting
-set mouse=v                 " enable mouse click
-set clipboard+=unnamedplus   " using system clipboard
+"set cc=80                   " set an 80 column border for good coding style
+
+filetype plugin indent on   " allow auto-indenting depending on file type
 filetype plugin on
+set mouse=v                 " enable mouse click
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
-" set spell                 " enable spell check (may need to download language package)
-set noswapfile            " disable creating swap file
-" set backupdir=~/.cache/vim " Directory to store backup files.
+
+set noswapfile              " disable creating swap file
+set clipboard+=unnamedplus  " using system clipboard
 set hidden
 set switchbuf=useopen
 set autoread
+
+"set spell                   " enable spell check (may need to download language package)
+"set backupdir=~/.cache/vim  " Directory to store backup files.
 
 call plug#begin()
 Plug 'SirVer/ultisnips'
 Plug 'lervag/vimtex'
 "Plug 'olivercederborg/poimandres.nvim'
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+"Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'sainnhe/everforest', { 'as': 'everforest' }
 Plug 'xiyaowong/transparent.nvim'
 "Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
-colorscheme catppuccin-mocha
-"catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
+set termguicolors
+set background=dark
+
+let g:everforest_background = 'hard'
+let g:everforest_better_performance = 1
+
+colorscheme everforest
+
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
 
 let g:UltiSnipsEnableSnipMate      = 0
 let g:UltiSnipsExpandTrigger       = '<Tab>'    " use Tab to expand snippets
 let g:UltiSnipsJumpForwardTrigger  = '<Tab>'    " use Tab to move forward through tabstops
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'  " use Shift-Tab to move backward through tabstops
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']  " using Neovim
-
 
 " This enables Vim's and neovim's syntax-related features. Without this, some
 " VimTeX features will not work (see ":help vimtex-requirements" for more

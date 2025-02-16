@@ -20,12 +20,14 @@ autoload -Uz promptinit; promptinit
 
 # optionally define some options
 PURE_CMD_MAX_EXEC_TIME=10
+PURE_PROMPT_SYMBOL=›
 
 # change the path color
 zstyle :prompt:pure:path color white
 
 # change the color for both `prompt:success` and `prompt:error`
-zstyle ':prompt:pure:prompt:*' color cyan
+zstyle ':prompt:pure:prompt:success' color cyan
+zstyle ':prompt:pure:prompt:error' color red
 
 # turn on git stash status
 zstyle :prompt:pure:git:stash show yes
