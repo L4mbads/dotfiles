@@ -12,37 +12,38 @@
     "display": {
         "separator": " ›  "
     },
+    "logo": {
+        "padding": {
+            "top": 0,
+            "right": 6
+        }
+    },
     "modules": [
         {
             "type": "os",
-            "key": "OS  ",
-            "keyColor": "31",  // = color1
+            "key": " OS ",
+            "keyColor": "yellow",
+            "format":"{pretty-name} {version}",
         },
         {
             "type": "kernel",
             "key": "KER ",
-            "keyColor": "32",
-        },
-        {
-            "type": "packages",
-            "format": "{} (pacman)",
-            "key": "PKG ",
-            "keyColor": "33",  
+            "keyColor": "green",
         },
         {
             "type": "shell",
-            "key": "SH  ",
-            "keyColor": "34", 
+            "key": " SH ",
+            "keyColor": "cyan", 
         },
         {
             "type": "terminal",
             "key": "TER ",
-            "keyColor": "35", 
+            "keyColor": "blue", 
         },
         {
             "type": "wm",
-            "key": "WM  ",
-            "keyColor": "36", 
+            "key": " WM ",
+            "keyColor": "magenta", 
         },
         "break",
         {
