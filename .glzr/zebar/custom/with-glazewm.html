@@ -50,7 +50,7 @@
           providers.onOutput(() => setOutput(providers.outputMap));
         }, []);
 
-        const ScrollingText = ({ text, interval = 200, length = 20 }) => {
+        const ScrollingText = ({ text, interval = 200, length = 24 }) => {
 
           if (text.length < length) {
             return <p className="media-title">{text}</p>;
@@ -153,7 +153,7 @@
               return <i className="nf nf-weather-night_alt_lightning"></i>;
           }
         }
-//<i className="logo nf nf-fa-windows"></i>
+
         return (
           <div className="app">
             <div className="left">
@@ -185,7 +185,7 @@
                       output.media.previous();}
                     }
                   >
-                    <i className="nf nf-fa-backward"></i>
+                    <i className="nf nf-md-step_backward"></i>
                   </button>
                   <button
                     className={`media-button-middle ${!output.media.currentSession.isPlaying && 'paused'}`}
@@ -194,7 +194,7 @@
                       output.media.togglePlayPause();}
                     }
                   >
-                    <ScrollingText text={output.media.currentSession.title ?? ' '} className="media-scroller"/>
+                    <ScrollingText text={output.media.currentSession.title ?? ' '}/>
                   </button>
                   <button
                     className="media-button"
@@ -203,7 +203,7 @@
                       output.media.next();}
                     }
                   >
-                    <i className="nf nf-fa-forward"></i>
+                    <i className="nf nf-md-step_forward"></i>
                   </button>
                 </div>
               )}
