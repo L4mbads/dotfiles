@@ -45,6 +45,7 @@ set autoread
 "set backupdir=~/.cache/vim  " Directory to store backup files.
 
 call plug#begin()
+
 Plug 'SirVer/ultisnips'
 Plug 'lervag/vimtex'
 "Plug 'olivercederborg/poimandres.nvim'
@@ -52,6 +53,8 @@ Plug 'lervag/vimtex'
 Plug 'sainnhe/everforest', { 'as': 'everforest' }
 Plug 'xiyaowong/transparent.nvim'
 "Plug 'lewis6991/gitsigns.nvim'
+Plug 'vim-airline/vim-airline'
+Plug 'jlanzarotta/bufexplorer'
 call plug#end()
 
 set termguicolors
@@ -116,3 +119,38 @@ let maplocalleader = ","
 lua package.path = package.path .. ";C:/msys64/ucrt64/share/nvim/runtime/lua/?.lua"
 lua package.path = package.path .. ";C:/msys64/ucrt64/share/nvim/runtime/lua/vim/?.lua"
 
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+
+noremap <silent> <leader>w :w<CR>
+noremap <silent> <leader>q :q!<CR>
+
+noremap <silent> <leader>ec :e $MYVIMRC<CR>
+noremap <silent> <leader>sc :source $MYVIMRC<CR>
+nnoremap <silent> <C-w> :set wrap! wrap?<CR>
+
+nnoremap <silent> <leader>bb <C-^>
+" go to next buffer
+nnoremap <S-l> :bn<CR>
+" go to previous buffer
+" https://github.com/neovim/neovim/issues/2048
+nnoremap <S-h> :bp<CR>
+" close buffer
+nnoremap <silent> <leader>bd :bd<CR>
+" kill buffer
+nnoremap <silent> <leader>bk :bd!<CR>
+" list buffers
+nnoremap <silent> <leader>bl :ls<CR>
+" list and select buffer
+nnoremap <silent> <leader>bg :ls<CR>:buffer<Space>
+" redraw screan and clear search highlighted items
+"http://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting#answer-25569434
+nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+
+
+" =====================================
+" vim-airline status
+" configure: https://github.com/vim-airline/vim-airline#user-content-extensible-pipeline
+" =====================================
+" show buffers (if only one tab)
+let g:airline#extensions#tabline#enabled = 1
