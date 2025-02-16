@@ -5,7 +5,8 @@
 @import 'https://www.nerdfonts.com/assets/css/webfont.css';
 
 :root {
-  --red: rgb(243, 139, 168);
+  /* catppuccin mocha */
+  /* --red: rgb(243, 139, 168);
   --yellow: rgb(249, 226, 176);
   --green: rgb(166, 227, 161);
   --blue: rgb(137, 180, 250);
@@ -14,7 +15,18 @@
   --white: rgb(205, 214, 244);
   --black: rgb(17, 17, 27);
   --gray: rgb(30, 30, 46);
-  --light-gray: rgb(108, 112, 134);
+  --light-gray: rgb(108, 112, 134); */
+
+  --red: #E67E80;
+  --yellow: #DBBC7F;
+  --green: #A7C080;
+  --blue: #7FBBB3;
+  --teal: #83C092;
+  --pink: #D699B6;
+  --white: #D3C6AA;
+  --black: #1E2326;
+  --gray: #272E33;
+  --light-gray: #414B50;
 
   --border-radius: 8px;
 }
@@ -59,7 +71,8 @@ body,
   height: 100%;
   margin: 0px;
   padding: 0px;
-  padding-inline: 10px;
+  padding-left: 20px;
+  padding-right: 10px;
 }
 
 .left,
@@ -86,36 +99,43 @@ body,
 .memory,
 .cpu,
 .battery {
-  background-color: var(--gray);
+  background-color: var(--black);
   margin-left: 10px;
-  color: var(--white);
+  color: white;
   border-radius: var(--border-radius);
   border: none;
-  padding: 11px 12px; */
+  padding: 11px 12px;
 }
 
 .logo {
-  background-color: var(--gray);
+  background-color: var(--black);
   margin-right: 10px;
-  /* color: var(--white); */
+  color: var(--green);
   border-radius: var(--border-radius);
+  border: none;
+  outline: solid 2px var(--teal);
+  outline-offset: -2px;
   padding: 11px 12px;
 }
 
 .network > .nf {
   color: var(--pink);
+  padding-inline: 3px;
 }
 
 .memory > .nf {
   color: var(--green);
+  padding-inline: 3px;
 }
 
 .cpu > .nf {
   color: var(--teal);
+  padding-inline: 3px;
 }
 
 .battery > .nf {
   color: var(--blue);
+  padding-inline: 3px;
 }
 
 .media {
@@ -183,7 +203,7 @@ body,
 
 .workspaces {
   margin-right: 10px;
-  padding: 3px 0px;
+  padding: 3px 3px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,29 +213,37 @@ body,
 }
 
 .workspace {
-  background: rgb(108 112 134 / 15%);
   color: var(--white);
+  background: var(--black);
   /* background: rgba(30, 30, 46, 0.3);
   color: rgb(255 255 255 / 90%); */
-  margin: 4px 4px;
-  padding: 4px 8px;
+  font-weight: 400;
+  margin: 6px 6px;
+  padding: 2px 6px;
   border: none;
-  border-radius: calc(var(--border-radius) - 2px);
+  border-radius: 24px;
   cursor: pointer;
   &.displayed {
-    background: rgb(255 112 134 / 15%);
+    background: var(--black);
+    /* background: rgb(255 112 134 / 15%); */
   }
   &.focused,
   &:hover {
-    font-weight: bold;
-    background: var(--light-gray);
+    font-weight: 800;
+    color: var(--black);
+    background: var(--white);
   }
 }
 
 .tiling-direction {
+  background-color: var(--gray);
   padding-left: 15px;
   padding-right: 7px;
   font-weight: bold;
+}
+
+.binding-mode {
+  background-color: var(--gray);
 }
 
 .cpu .high-usage {
