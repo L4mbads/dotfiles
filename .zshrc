@@ -1,5 +1,5 @@
 # zmodload zsh/zprof
-fastfetch -l "Windows 11_small"
+# fastfetch -l "Windows 11_small"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -20,7 +20,8 @@ autoload -Uz promptinit; promptinit
 
 # optionally define some options
 PURE_CMD_MAX_EXEC_TIME=10
-PURE_PROMPT_SYMBOL=›
+# PURE_PROMPT_SYMBOL=">"
+#›
 
 # change the path color
 zstyle :prompt:pure:path color white
@@ -56,7 +57,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
+# zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
@@ -173,6 +174,14 @@ mvp()
     [ -a "$dir" ] ||
     mkdir -p "$dir" &&
     mv "$@"
+}
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
 # ff

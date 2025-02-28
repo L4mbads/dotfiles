@@ -125,6 +125,9 @@ let mapleader = " "
 noremap <silent> <leader>w :w<CR>
 noremap <silent> <leader>q :q!<CR>
 
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+
 noremap <silent> <leader>ec :e $MYVIMRC<CR>
 noremap <silent> <leader>sc :source $MYVIMRC<CR>
 nnoremap <silent> <C-w> :set wrap! wrap?<CR>
