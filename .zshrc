@@ -62,14 +62,14 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
+# zinit snippet OMZL::git.zsh
+# zinit snippet OMZP::git
 # zinit snippet OMZP::sudo
 # zinit snippet OMZP::archlinux
 # zinit snippet OMZP::aws
 # zinit snippet OMZP::kubectl
 # zinit snippet OMZP::kubectx
-zinit snippet OMZP::command-not-found
+# zinit snippet OMZP::command-not-found
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -85,6 +85,9 @@ bindkey -v
 # bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 bindkey '^l' autosuggest-accept
+zle     -N            fzf-cd-widget
+bindkey -M vicmd '\C-e' fzf-cd-widget
+bindkey -M viins '\C-e' fzf-cd-widget
 
 # History
 HISTSIZE=5000
@@ -129,8 +132,20 @@ _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-export FZF_CTRL_T_OPTS="--preview 'eza --tree --color=always {} | head -200'"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+export FZF_CTRL_T_OPTS="--height 60% \
+--border sharp \
+--layout reverse \
+--prompt '∷ ' \
+--pointer ▶ \
+--marker ⇒ \
+--preview 'eza --tree --color=always {} | head -200'"
+export FZF_ALT_C_OPTS="--height 60% \
+--border sharp \
+--layout reverse \
+--prompt '∷ ' \
+--pointer ▶ \
+--marker ⇒ \
+--preview 'eza --tree --color=always {} | head -200'"
 
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
