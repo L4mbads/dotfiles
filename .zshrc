@@ -20,7 +20,7 @@ autoload -Uz promptinit; promptinit
 
 # optionally define some options
 PURE_CMD_MAX_EXEC_TIME=10
-# PURE_PROMPT_SYMBOL=">"
+PURE_PROMPT_SYMBOL="$"
 #›
 
 # change the path color
@@ -57,8 +57,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 zinit light zsh-users/zsh-syntax-highlighting
-# zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+# zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
@@ -72,7 +72,13 @@ zinit light Aloxaf/fzf-tab
 # zinit snippet OMZP::command-not-found
 
 # Load completions
-autoload -Uz compinit && compinit
+# autoload -Uz compinit && compinit
+autoload compinit
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+else
+	compinit -C;
+fi;
 
 zinit cdreplay -q
 
@@ -80,14 +86,31 @@ zinit cdreplay -q
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Keybindings
-bindkey -v
+# bindkey -v
 # bindkey '^p' history-search-backward
 # bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
-bindkey '^l' autosuggest-accept
+# bindkey '^l' autosuggest-accept
 zle     -N            fzf-cd-widget
-bindkey -M vicmd '\C-e' fzf-cd-widget
-bindkey -M viins '\C-e' fzf-cd-widget
+# bindkey -M vicmd '\C-e' fzf-cd-widget
+# bindkey -M viins '\C-e' fzf-cd-widget
+bindkey '^[[1;5C' emacs-forward-word
+bindkey '^[[1;5D' emacs-backward-word
+
+# Unbindings
+bindkey -r "^L"
+bindkey -r "^H"
+bindkey -r "^J"
+bindkey -r "^K"
+
+#bindkey -r "^[OA"
+#bindkey -r "^[OB"
+#bindkey -r "^[OC"
+#bindkey -r "^[OD"
+#bindkey -r "^[Q"
+#bindkey -r "^[[200~"
+#bindkey -r "^[[C"
+#bindkey -r "^[[D"
 
 # History
 HISTSIZE=5000
@@ -163,7 +186,7 @@ _fzf_comprun() {
 }
 
 # Aliases
-alias ls='eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions'
+alias ls='eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions --group-directories-first -x'
 alias vim='nvim'
 alias c='clear'
 alias zshrc='nvim ~/.zshrc'
@@ -171,6 +194,8 @@ alias nviminit='nvim ~/Appdata/Local/nvim/init.vim'
 # alias ff='fastfetch -l "C:\Users\rizac\.config\fastfetch\nijios.txt" --logo-color-1 "yellow"'
 alias ff='fastfetch -l "Windows 11_small"'
 alias spot='~/AppData/Roaming/Spotify/Spotify.exe'
+alias ch='chafa -f sixels'
+alias tt='terminal-toys'
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -190,6 +215,8 @@ mvp()
     mkdir -p "$dir" &&
     mv "$@"
 }
+
+export EDITOR="nvim"
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"

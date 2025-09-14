@@ -2,12 +2,13 @@ general:
   # Commands to run when the WM has started. This is useful for running a
   # script or launching another application.
   # Example: The below command launches Zebar.
-  startup_commands: ["shell-exec zebar"]
-  # startup_commands: []
+  # startup_commands: ["shell-exec zebar"]
+  startup_commands: []
 
   # Commands to run just before the WM is shutdown.
   # Example: The below command kills Zebar.
-  shutdown_commands: ["shell-exec taskkill /IM zebar.exe /F"]
+  # shutdown_commands: ["shell-exec taskkill /IM zebar.exe /F"]
+  shutdown_commands: []
   # shutdown_commands: []
 
   # Commands to run after the WM config is reloaded.
@@ -38,10 +39,17 @@ gaps:
 
   # Gap between windows and the screen edge.
   outer_gap:
-    top: "16px"
-    right: "20px"
-    bottom: "20px"
-    left: "20px"
+    top   : "10px"
+    right : "10px"
+    bottom: "10px"
+    left  : "10px"
+
+  # Overrides `outer_gap` when there is just one window on a workspace.
+  single_window_outer_gap:
+    top   : "40px"
+    right : "10%"
+    bottom: "40px"
+    left  : "10%"
 
 window_effects:
   # Visual effects to apply to the focused window.
@@ -50,7 +58,8 @@ window_effects:
     # ** Exclusive to Windows 11 due to API limitations.
     border:
       enabled: true
-      color: "#000000"
+      # color: "#D699B6"
+      color: "#9DA9A0"
 
     # Remove the title bar from the window's frame. Note that this can
     # cause rendering issues for some applications.
@@ -68,7 +77,7 @@ window_effects:
   other_windows:
     border:
       enabled: true
-      color: "#000000"
+      color: "#1E2326"
     hide_title_bar:
       enabled: false
     corner_style:
@@ -129,11 +138,29 @@ window_rules:
         window_class: { regex: "HwndWrapper" }
 
       - window_process: { equals: "FluentSearch" }
+      - window_process: { equals: "OverKeys" }
+
   - commands: ["set-tiling"]
     match:
       - window_process: { equals: "Code" }
       - window_process: { equals: "Vesktop" }
       - window_process: { equals: "Spotify" }
+
+  - commands: ["set-floating"]
+    match:
+      - window_process: { equals: "java" }
+      - window_process: { equals: "python" }
+      - window_process: { equals: "Ghelper" }
+      - window_process: { equals: "mpv" }
+      - window_class: { equals: "SFML_Window" }
+      - window_class: { equals: "WindowsForms10.Window.8.app.0.6255dd_r3_ad1" }
+      - window_class: { equals: "AutoHotkeyGUI" }
+      - window_class: { equals: "RAIL_WINDOW" }
+
+      # Godot
+      - window_process: { regex: "[Gg]odot" }
+      # - window_title: { regex: "DEBUG" }
+      # - window_title: { equals: "Project Settings (project.godot)" }
   # - commands: ["set-transparency --opacity 1"]
   #   match:
   #     - window_process: { equals: "brave" }
@@ -164,23 +191,23 @@ binding_modes:
 keybindings:
   # Shift focus in a given direction.
   - commands: ["focus --direction left"]
-    bindings: ["alt+h", "alt+left"]
+    bindings: ["alt+h"]
   - commands: ["focus --direction right"]
-    bindings: ["alt+l", "alt+right"]
+    bindings: ["alt+l"]
   - commands: ["focus --direction up"]
-    bindings: ["alt+k", "alt+up"]
+    bindings: ["alt+k"]
   - commands: ["focus --direction down"]
-    bindings: ["alt+j", "alt+down"]
+    bindings: ["alt+j"]
 
   # Move focused window in a given direction.
   - commands: ["move --direction left"]
-    bindings: ["alt+shift+h", "alt+shift+left"]
+    bindings: ["alt+shift+h"]
   - commands: ["move --direction right"]
-    bindings: ["alt+shift+l", "alt+shift+right"]
+    bindings: ["alt+shift+l"]
   - commands: ["move --direction up"]
-    bindings: ["alt+shift+k", "alt+shift+up"]
+    bindings: ["alt+shift+k"]
   - commands: ["move --direction down"]
-    bindings: ["alt+shift+j", "alt+shift+down"]
+    bindings: ["alt+shift+j"]
 
   # Resize focused window by a percentage or pixel amount.
   - commands: ["resize --width -2%"]
@@ -222,6 +249,10 @@ keybindings:
   # Change the focused window to be fullscreen.
   - commands: ["toggle-fullscreen"]
     bindings: ["alt+f"]
+
+  # Set window to ignore
+  - commands: ["ignore"]
+    bindings: ["alt+i"]
 
   # Minimize focused window.
   - commands: ["toggle-minimized"]

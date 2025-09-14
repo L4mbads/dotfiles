@@ -46,7 +46,7 @@ set autoread
 
 call plug#begin()
 
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'lervag/vimtex'
 "Plug 'olivercederborg/poimandres.nvim'
 "Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
